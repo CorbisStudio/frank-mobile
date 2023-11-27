@@ -1,4 +1,4 @@
-package com.example.frank_mobile
+package com.corbisstudio.frank_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
