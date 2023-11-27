@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frank_mobile/login/screens/splashscreen_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -7,14 +8,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Frank Mobile',
-      home: Scaffold(
-        appBar: AppBar(
-        ),
-        body: Container(
-        ),
-      ),
+      home: SplashScreenPage()
     );
   }
 }
