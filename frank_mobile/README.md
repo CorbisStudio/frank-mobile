@@ -18,3 +18,17 @@ feature1/
 ┃ ┣ feature1_widget.dart
 ┃ ┗ widgets.dart
 ┗ main.dart
+
+
+domain/models/
+Contiene todos los modelos de datos y JSON hacia/desde las funciones auxiliares de Dart
+domain/repository/
+Contiene clases abstractas que describen la funcionalidad de la característica
+domain/services/
+Contiene la implementación real del repositorio
+providers/
+Contiene todo lo relacionado con el estado de esa característica en particular.
+screens/
+contiene pantallas completas que tienen Scaffold
+widgets/
+Contiene todos los widgets necesarios para esa característica en particular
