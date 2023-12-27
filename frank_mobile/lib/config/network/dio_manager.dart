@@ -17,6 +17,8 @@ class DioManager {
       BaseOptions(
         baseUrl: _baseUrl,
         followRedirects: true,
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 3),
       ),
     );
   }
