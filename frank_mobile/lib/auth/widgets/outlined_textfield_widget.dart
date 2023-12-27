@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class OutlinedTextField extends StatelessWidget {
+class OutlinedTextField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final String? errorMessage;
@@ -25,8 +25,14 @@ class OutlinedTextField extends StatelessWidget {
   });
 
   @override
+  State<OutlinedTextField> createState() => _OutlinedTextFieldState();
+}
+
+class _OutlinedTextFieldState extends State<OutlinedTextField> {
+  @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    bool? obscureText = true;
 
     final border = OutlineInputBorder(
       borderSide: const BorderSide(
@@ -37,10 +43,16 @@ class OutlinedTextField extends StatelessWidget {
     );
 
     return TextFormField(
-      onChanged: onChanged,
-      validator: validator,
-      obscureText: obscureText,
+      onChanged: widget.onChanged,
+      validator: widget.validator,
+      obscureText: widget.labelText == 'Password' ? obscureText : false,
       decoration: InputDecoration(
+        suffixIcon: widget.labelText == 'Password'
+            ? InkWell(
+               onTap: () => obscureText!=null ? obscureText = !obscureText! : null,
+              child: Icon( obscureText ? Icons.visibility_off : Icons.visibility),
+            )
+            : null,
         enabledBorder: border,
         focusedBorder: border.copyWith(
           borderSide: BorderSide(color: colors.primary),
@@ -52,9 +64,9 @@ class OutlinedTextField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.red.shade800),
         ),
         isDense: true,
-        labelText: labelText != null ? (labelText!) : null,
-        hintText: hintText,
-        errorText: errorMessage,
+        labelText: widget.labelText != null ? (widget.labelText!) : null,
+        hintText: widget.hintText,
+        errorText: widget.errorMessage,
         focusColor: colors.primary,
       ),
       style: const TextStyle(
@@ -62,5 +74,4 @@ class OutlinedTextField extends StatelessWidget {
       ),
     );
   }
-
 }
