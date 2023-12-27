@@ -1,6 +1,6 @@
 part of 'auth_bloc.dart';
 
-enum AuthStatus { unknown, authenticated, guest }
+enum AuthStatus { unknown, authenticated, unauthenticated }
 
 enum AuthError {
   hostUnreachable,
@@ -29,11 +29,11 @@ class AuthState extends Equatable {
 
   const AuthState.guest()
       : this._(
-          status: AuthStatus.guest,
+          status: AuthStatus.unauthenticated,
           isFirstEntry: false,
         );
 
-  const AuthState.firstEntry() : this._(status: AuthStatus.guest);
+  const AuthState.firstEntry() : this._(status: AuthStatus.unauthenticated);
 
   const AuthState.error({AuthError error = AuthError.unknown})
       : this._(status: AuthStatus.unknown, isFirstEntry: false, error: error);
