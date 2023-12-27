@@ -6,9 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frank_mobile/utils/validations.dart';
 import 'package:frank_mobile/config/router/pages.dart';
 import 'package:frank_mobile/config/router/widgets.dart';
-import 'package:frank_mobile/config/network/dio_manager.dart';
-import 'package:frank_mobile/config/cache/auth_cache_manager.dart';
-import 'package:frank_mobile/auth/domain/services/auth_service.dart';
 import 'package:frank_mobile/auth/providers/auth_bloc/auth_bloc.dart';
 import 'package:frank_mobile/auth/providers/login_bloc/login_bloc.dart';
 
