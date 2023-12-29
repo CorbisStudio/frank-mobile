@@ -27,7 +27,7 @@ class AuthState extends Equatable {
           isFirstEntry: false,
         );
 
-  const AuthState.guest()
+  const AuthState.unauthenticated()
       : this._(
           status: AuthStatus.unauthenticated,
           isFirstEntry: false,

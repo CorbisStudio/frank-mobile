@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:frank_mobile/config/router/blocs.dart';
 import 'package:frank_mobile/config/theme/theme_data.dart';
 import 'package:frank_mobile/config/router/app_router.dart';
 import 'package:frank_mobile/config/network/dio_manager.dart';
 import 'package:frank_mobile/config/cache/auth_cache_manager.dart';
 import 'package:frank_mobile/auth/domain/services/auth_service.dart';
-import 'package:frank_mobile/auth/providers/auth_bloc/auth_bloc.dart';
-import 'package:frank_mobile/auth/providers/login_bloc/login_bloc.dart';
 
 void main() {
   runApp(
@@ -15,13 +14,12 @@ void main() {
       providers: [
         BlocProvider(
           create: (_) => AuthBloc(
+            AuthService(DioManager.instance),
             AuthCacheManager(),
           ),
         ),
         BlocProvider(
-          create: (_) => LoginBloc(
-            AuthService(DioManager.instance),
-          ),
+          create: (_) => LoginBloc(),
         ),
       ],
       child: const MyApp(),

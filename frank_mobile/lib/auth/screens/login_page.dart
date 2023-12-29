@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:frank_mobile/utils/validations.dart';
 import 'package:frank_mobile/config/router/pages.dart';
+import 'package:frank_mobile/config/router/blocs.dart';
 import 'package:frank_mobile/config/router/widgets.dart';
-import 'package:frank_mobile/auth/providers/auth_bloc/auth_bloc.dart';
-import 'package:frank_mobile/auth/providers/login_bloc/login_bloc.dart';
+
 
 class LoginPage extends StatefulWidget {
   static const String name = 'login_page';
@@ -54,6 +54,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    String email = context.watch<LoginBloc>().state.email;
+    String password = context.watch<LoginBloc>().state.password;
+
+
     const snackBar = SnackBar(
       content: Text(
         'We don-t recognize this e-mail or password.\nCheck your information and try again.',
@@ -114,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                           emailController.text = value;
                           context
                               .read<LoginBloc>()
-                              .add(LoginEmailChangedEvent(email: value));
+                              .add(EmailChangedEvent(email: value));
                         },
                       ),
                     ),
@@ -135,8 +140,9 @@ class _LoginPageState extends State<LoginPage> {
                         onChanged: (value) {
                           passwordController.text = value;
                           context.read<LoginBloc>().add(
-                                LoginPasswordChangedEvent(password: value),
+                                PasswordChangedEvent(password: value),
                               );
+                          
                         },
                       ),
                     ),
@@ -146,9 +152,11 @@ class _LoginPageState extends State<LoginPage> {
                     child: FlatButtonWidget(
                       onPressed: () {
                         if (validate != null && validate == true) {
-                          context.read<LoginBloc>().add(
-                                const LoginButtonPressedEvent(),
-                              );
+                          context.read<AuthBloc>().add(
+                            LoginRequested(
+                              email, password,
+                            ),
+                          );
                         }
                       },
                       backgroundColor: Colors.orange,
@@ -166,7 +174,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              //TODO Forget Password
+                            },
                             child: const Text(
                               'Did you forget your password?',
                               textAlign: TextAlign.center,
@@ -177,7 +187,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              //TODO More Help
+                            },
                             child: const Text(
                               'Do you need more help?',
                               textAlign: TextAlign.center,

@@ -8,7 +8,7 @@ abstract class IAuthService {
 
   IAuthService(this.dioManager);
 
-  Future<Either<Failure, AuthModel>?> login({
+  Future<Either<Failure, AuthModel>> login({
     required String email,
     required String password,
   });
